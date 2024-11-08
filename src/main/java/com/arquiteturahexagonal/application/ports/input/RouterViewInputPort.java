@@ -1,4 +1,4 @@
-package com.arquiteturahexagonal.application.ports;
+package com.arquiteturahexagonal.application.ports.input;
 //
 import com.arquiteturahexagonal.application.usecase.RouterViewUseCase;
 import com.arquiteturahexagonal.domain.Router;
