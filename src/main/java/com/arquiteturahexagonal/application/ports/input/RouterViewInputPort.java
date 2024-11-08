@@ -1,5 +1,6 @@
 package com.arquiteturahexagonal.application.ports.input;
 //
+import com.arquiteturahexagonal.application.ports.output.RouterViewOutputPort;
 import com.arquiteturahexagonal.application.usecase.RouterViewUseCase;
 import com.arquiteturahexagonal.domain.Router;
 
@@ -8,8 +9,7 @@ import java.util.function.Predicate;
 
 public class RouterViewInputPort implements RouterViewUseCase {
     private RouterViewOutputPort routerListOutputPort;
-    public RouterViewInput
-    Port(RouterViewOutputPort routerViewOutputPort) {
+    public RouterViewInputPort(RouterViewOutputPort routerViewOutputPort) {
         this.routerListOutputPort = routerViewOutputPort;
     }
     @Override
