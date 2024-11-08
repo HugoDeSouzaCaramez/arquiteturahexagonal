@@ -1,5 +1,5 @@
 package com.arquiteturahexagonal.application.ports;
-
+//
 import com.arquiteturahexagonal.application.usecase.RouterViewUseCase;
 import com.arquiteturahexagonal.domain.Router;
 
