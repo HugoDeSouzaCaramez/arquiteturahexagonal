@@ -2,24 +2,49 @@ package com.arquiteturahexagonal.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 //Router entity class
 public class Router {
-    private final RouterType type;
-    private final RouterId id;
-    public Router(RouterType type, RouterId id) {
-        this.type = type;
-        this.id = id;
+    private final RouterType routerType;
+    private final RouterId routerId;
+
+    public Router(RouterType routerType, RouterId routerId) {
+        this.routerType = routerType;
+        this.routerId = routerId;
     }
-    public static List<Router> checkRouter(
-            RouterType type, List<Router> routers) {
-        var routersList = new ArrayList<Router>();
-        routers.forEach(router -> {
-            if(router.type == type ){
-                routersList.add(router);
-            }
-        });
-        return routersList;
+
+    public static Predicate<Router> filterRouterByType(RouterType routerType){
+        return routerType.equals(RouterType.CORE)
+                ? isCore() :
+                isEdge();
+    }
+
+    private static Predicate<Router> isCore(){
+        return p -> p.getRouterType() == RouterType.CORE;
+    }
+
+    private static Predicate<Router> isEdge(){
+        return p -> p.getRouterType() == RouterType.EDGE;
+    }
+
+    public static List<Router> retrieveRouter(List<Router> routers, Predicate<Router> predicate){
+        return routers.stream()
+                .filter(predicate)
+                .collect(Collectors.<Router>toList());
+    }
+
+    public RouterType getRouterType(){
+        return routerType;
+    }
+
+    @Override
+    public String toString(){
+        return "Router{" +
+                "routerType=" + routerType +
+                ", routerId=" + routerId +
+                '}';
     }
 }
 

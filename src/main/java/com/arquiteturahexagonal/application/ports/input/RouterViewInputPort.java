@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 public class RouterViewInputPort implements RouterViewUseCase {
     private RouterViewOutputPort routerListOutputPort;
+
     public RouterViewInputPort(RouterViewOutputPort routerViewOutputPort) {
         this.routerListOutputPort = routerViewOutputPort;
     }
