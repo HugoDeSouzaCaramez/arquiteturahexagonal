@@ -1,0 +1,1 @@
+mvn archetype:generate -DgroupId=com.arquiteturahexagonal -DartifactId=arquiteturahexagonal -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
