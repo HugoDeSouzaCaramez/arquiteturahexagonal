@@ -1,5 +1,5 @@
 package com.arquiteturahexagonal.framework.adapters.input.stdin;
-
+//
 import com.arquiteturahexagonal.application.ports.input.RouterViewInputPort;
 import com.arquiteturahexagonal.application.usecase.RouterViewUseCase;
 import com.arquiteturahexagonal.domain.Router;
