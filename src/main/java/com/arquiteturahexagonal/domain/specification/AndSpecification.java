@@ -1,7 +1,6 @@
 package com.arquiteturahexagonal.domain.specification;
 
-public class AndSpecification<T> extends AbstractSpecifica
- tion<T> {
+public final class AndSpecification<T> extends AbstractSpecification<T> {
     private final Specification<T> spec1;
     private final Specification<T> spec2;
  public AndSpecification(final Specification<T> spec1,

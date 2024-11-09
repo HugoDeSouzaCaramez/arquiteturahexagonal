@@ -1,6 +1,8 @@
 package com.arquiteturahexagonal.domain.specification;
 
-public class RouterTypeSpecification extends AbstractSpecification<Router> {
+import com.arquiteturahexagonal.domain.entity.Router;
+
+public final class RouterTypeSpecification extends AbstractSpecification<Router> {
     @Override
     public boolean isSatisfiedBy(Router router) {
         return

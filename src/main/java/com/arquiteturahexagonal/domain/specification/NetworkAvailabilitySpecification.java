@@ -1,6 +1,8 @@
 package com.arquiteturahexagonal.domain.specification;
 
-public class NetworkAvailabilitySpecification extends AbstractSpecification<Router> {
+import com.arquiteturahexagonal.domain.entity.Router;
+
+public final class NetworkAvailabilitySpecification extends AbstractSpecification<Router> {
     private final IP address;
     private final String name;
     private final int cidr;
