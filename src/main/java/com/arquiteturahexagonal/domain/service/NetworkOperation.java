@@ -1,5 +1,6 @@
 package com.arquiteturahexagonal.domain.service;
 
+//
 public class NetworkOperation {
     final private int MINIMUM_ALLOWED_CIDR = 8;
     public void createNewNetwork(Router router, IP
