@@ -1,5 +1,7 @@
 package com.arquiteturahexagonal.domain.entity;
 
+import com.arquiteturahexagonal.domain.vo.Activity;
+
 import java.time.OffsetDateTime;
 
 public class Event implements Comparable<Event> {
