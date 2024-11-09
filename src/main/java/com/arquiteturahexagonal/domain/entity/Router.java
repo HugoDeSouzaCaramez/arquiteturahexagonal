@@ -41,6 +41,16 @@ public class Router {
     public RouterType getRouterType() {
         return routerType;
     }
+
+    public void addNetworkToSwitch(Network network) {
+        this.networkSwitch = networkSwitch.addNetwork(network,
+                this);
+    }
+    public Network createNetwork(IP address, String name, long
+            cidr) {
+        return new Network(address, name, cidr);
+    }
+
     @Override
     public String toString() {
         return "Router{" +
