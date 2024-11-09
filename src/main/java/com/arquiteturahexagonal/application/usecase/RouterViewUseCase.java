@@ -1,6 +1,6 @@
 package com.arquiteturahexagonal.application.usecase;
 
-import com.arquiteturahexagonal.domain.Router;
+import com.arquiteturahexagonal.domain.entity.Router;
 
 import java.util.List;
 import java.util.function.Predicate;

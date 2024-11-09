@@ -1,7 +1,7 @@
 package com.arquiteturahexagonal.framework.adapters.output.file;
 
 import com.arquiteturahexagonal.application.ports.output.RouterViewOutputPort;
-import com.arquiteturahexagonal.domain.Router;
+import com.arquiteturahexagonal.domain.entity.Router;
 import com.arquiteturahexagonal.domain.RouterId;
 import com.arquiteturahexagonal.domain.RouterType;
 

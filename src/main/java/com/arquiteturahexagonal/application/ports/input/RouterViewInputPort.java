@@ -2,7 +2,7 @@ package com.arquiteturahexagonal.application.ports.input;
 //
 import com.arquiteturahexagonal.application.ports.output.RouterViewOutputPort;
 import com.arquiteturahexagonal.application.usecase.RouterViewUseCase;
-import com.arquiteturahexagonal.domain.Router;
+import com.arquiteturahexagonal.domain.entity.Router;
 
 import java.util.List;
 import java.util.function.Predicate;
