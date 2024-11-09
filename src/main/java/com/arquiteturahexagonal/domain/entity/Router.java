@@ -5,6 +5,7 @@ import com.arquiteturahexagonal.domain.vo.Network;
 import com.arquiteturahexagonal.domain.vo.RouterId;
 import com.arquiteturahexagonal.domain.vo.RouterType;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 //Router entity class
