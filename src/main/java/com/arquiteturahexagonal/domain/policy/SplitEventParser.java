@@ -1,8 +1,12 @@
 package com.arquiteturahexagonal.domain.policy;
 
 import com.arquiteturahexagonal.domain.entity.Event;
+import com.arquiteturahexagonal.domain.vo.Activity;
+import com.arquiteturahexagonal.domain.vo.EventId;
+import com.arquiteturahexagonal.domain.vo.Protocol;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 
 public final class SplitEventParser implements EventParser {

@@ -1,7 +1,9 @@
 package com.arquiteturahexagonal.domain.service;
 
 import com.arquiteturahexagonal.domain.entity.Event;
+import com.arquiteturahexagonal.domain.vo.ParsePolicyType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventSearch {

@@ -1,6 +1,7 @@
 package com.arquiteturahexagonal.domain.specification;
 
 import com.arquiteturahexagonal.domain.entity.Router;
+import com.arquiteturahexagonal.domain.vo.IP;
 
 public final class NetworkAvailabilitySpecification extends AbstractSpecification<Router> {
 

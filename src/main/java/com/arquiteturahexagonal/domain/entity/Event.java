@@ -1,8 +1,14 @@
 package com.arquiteturahexagonal.domain.entity;
 
+import com.arquiteturahexagonal.domain.policy.RegexEventParser;
+import com.arquiteturahexagonal.domain.policy.SplitEventParser;
 import com.arquiteturahexagonal.domain.vo.Activity;
+import com.arquiteturahexagonal.domain.vo.EventId;
+import com.arquiteturahexagonal.domain.vo.ParsePolicyType;
+import com.arquiteturahexagonal.domain.vo.Protocol;
 
 import java.time.OffsetDateTime;
+import java.util.Objects;
 
 public class Event implements Comparable<Event> {
 

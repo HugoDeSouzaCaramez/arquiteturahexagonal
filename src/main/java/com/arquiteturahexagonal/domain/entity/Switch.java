@@ -1,5 +1,13 @@
 package com.arquiteturahexagonal.domain.entity;
 
+import com.arquiteturahexagonal.domain.vo.IP;
+import com.arquiteturahexagonal.domain.vo.Network;
+import com.arquiteturahexagonal.domain.vo.SwitchId;
+import com.arquiteturahexagonal.domain.vo.SwitchType;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Switch {
 
     private final SwitchType switchType;

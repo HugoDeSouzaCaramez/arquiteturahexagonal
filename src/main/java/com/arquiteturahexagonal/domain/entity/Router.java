@@ -1,5 +1,7 @@
 package com.arquiteturahexagonal.domain.entity;
 
+import com.arquiteturahexagonal.domain.vo.IP;
+import com.arquiteturahexagonal.domain.vo.Network;
 import com.arquiteturahexagonal.domain.vo.RouterId;
 import com.arquiteturahexagonal.domain.vo.RouterType;
 
@@ -32,6 +34,7 @@ public class Router {
     }
 
     public void addNetworkToSwitch(Network network){
+
         this.networkSwitch = networkSwitch.addNetwork(network, this);
     }
 

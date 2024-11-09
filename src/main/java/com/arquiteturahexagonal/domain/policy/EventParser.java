@@ -2,6 +2,7 @@ package com.arquiteturahexagonal.domain.policy;
 
 import com.arquiteturahexagonal.domain.entity.Event;
 
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 
 public sealed interface EventParser permits RegexEventParser, SplitEventParser {
