@@ -13,17 +13,5 @@ public class NetworkOperation {
                             router.createNetwork(address,name,cidr);
         router.addNetworkToSwitch(network);
     }
-    private boolean isNetworkAvailable(Router router, IP
-            address){
-        var availability = true;
-        for (Network network : router.retrieveNetworks()) {
-            if(network.getAddress().equals(address) &&
-                    network.getCidr() == cidr)
-                availability = false;
-            break;
-
-        }
-        return availability;
-    }
 }
 
