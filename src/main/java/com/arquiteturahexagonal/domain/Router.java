@@ -29,12 +29,6 @@ public class Router {
         return p -> p.getRouterType() == RouterType.EDGE;
     }
 
-    public static List<Router> retrieveRouter(List<Router> routers, Predicate<Router> predicate){
-        return routers.stream()
-                .filter(predicate)
-                .collect(Collectors.<Router>toList());
-    }
-
     public RouterType getRouterType(){
         return routerType;
     }
