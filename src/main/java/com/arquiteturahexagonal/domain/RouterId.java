@@ -1,7 +1,7 @@
 package com.arquiteturahexagonal.domain;
 
 import java.util.UUID;
-
+//
 public class RouterId {
     private final UUID id;
     private RouterId(UUID id){
