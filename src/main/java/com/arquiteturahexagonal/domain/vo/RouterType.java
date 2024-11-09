@@ -1,4 +1,4 @@
-package com.arquiteturahexagonal.domain;
+package com.arquiteturahexagonal.domain.vo;
 
 public enum RouterType {
     EDGE,

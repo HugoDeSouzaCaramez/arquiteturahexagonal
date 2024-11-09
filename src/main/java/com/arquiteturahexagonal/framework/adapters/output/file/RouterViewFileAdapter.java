@@ -2,8 +2,8 @@ package com.arquiteturahexagonal.framework.adapters.output.file;
 
 import com.arquiteturahexagonal.application.ports.output.RouterViewOutputPort;
 import com.arquiteturahexagonal.domain.entity.Router;
-import com.arquiteturahexagonal.domain.RouterId;
-import com.arquiteturahexagonal.domain.RouterType;
+import com.arquiteturahexagonal.domain.vo.RouterId;
+import com.arquiteturahexagonal.domain.vo.RouterType;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

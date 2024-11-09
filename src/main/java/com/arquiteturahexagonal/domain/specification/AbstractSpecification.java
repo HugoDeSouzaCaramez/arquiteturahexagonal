@@ -5,11 +5,12 @@ public abstract sealed class AbstractSpecification<T> implements Specification<T
         CIDRSpecification,
         NetworkAmountSpecification,
         NetworkAvailabilitySpecification,
-        RouterTypeSpecification {
+        RouterTypeSpecification
+{
+
     public abstract boolean isSatisfiedBy(T t);
-    public Specification<T> and(final Specification<T>
-                                        specification) {
-        return new AndSpecification<T>(this,
-                specification);
+
+    public Specification<T> and(final Specification<T> specification) {
+        return new AndSpecification<T>(this, specification);
     }
 }

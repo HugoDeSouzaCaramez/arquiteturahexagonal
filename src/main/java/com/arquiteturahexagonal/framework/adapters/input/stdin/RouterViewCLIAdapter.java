@@ -3,7 +3,7 @@ package com.arquiteturahexagonal.framework.adapters.input.stdin;
 import com.arquiteturahexagonal.application.ports.input.RouterViewInputPort;
 import com.arquiteturahexagonal.application.usecase.RouterViewUseCase;
 import com.arquiteturahexagonal.domain.entity.Router;
-import com.arquiteturahexagonal.domain.RouterType;
+import com.arquiteturahexagonal.domain.vo.RouterType;
 import com.arquiteturahexagonal.framework.adapters.output.file.RouterViewFileAdapter;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.arquiteturahexagonal.domain.policy;
+package com.arquiteturahexagonal.domain.vo;
 
 public enum ParsePolicyType {
     REGEX,
