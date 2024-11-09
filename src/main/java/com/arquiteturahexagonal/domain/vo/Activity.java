@@ -1,6 +1,7 @@
 package com.arquiteturahexagonal.domain.vo;
 //
 //
+//
 public class Activity {
     private final String description;
     private final String srcHost;

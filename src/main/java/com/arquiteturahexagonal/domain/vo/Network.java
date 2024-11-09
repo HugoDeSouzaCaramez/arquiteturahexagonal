@@ -1,5 +1,5 @@
 package com.arquiteturahexagonal.domain.vo;
-
+//
 public record Network(IP address, String name, int cidr) {
     public Network {
         if (cidr < 1 || cidr > 32) {

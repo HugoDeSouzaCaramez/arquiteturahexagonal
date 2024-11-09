@@ -1,5 +1,6 @@
 package com.arquiteturahexagonal.domain.vo;
 
+//
 public class IP {
     private final String address;
     private final Protocol protocol;
