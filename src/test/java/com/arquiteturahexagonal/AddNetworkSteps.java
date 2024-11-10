@@ -2,10 +2,15 @@ package com.arquiteturahexagonal;
 
 import com.arquiteturahexagonal.domain.entity.Router;
 import com.arquiteturahexagonal.domain.specification.CIDRSpecification;
+import com.arquiteturahexagonal.domain.specification.NetworkAvailabilitySpecification;
 import com.arquiteturahexagonal.domain.vo.IP;
 import com.arquiteturahexagonal.domain.vo.Network;
 import com.arquiteturahexagonal.domain.vo.RouterId;
 import com.arquiteturahexagonal.framework.adapters.output.file.RouterNetworkFileAdapter;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 public class AddNetworkSteps {
 
