@@ -56,7 +56,7 @@ import com.arquiteturahexagonal.domain.vo.RouterId;
  * sem dizer como essa intenção será realizada, as portas de saída fazem a mesma coisa ao representar que tipo de
  * dados o aplicativo precisa, sem precisar saber como esses dados serão obtidos. As portas de saída, junto com as
  * portas de entrada e os casos de uso, são os componentes de arquitetura hexagonal que dão suporte ao esforço
- * de automação que caracteriza o hexágono do aplicativo. E
+ * de automação que caracteriza o hexágono do aplicativo.
  * */
 public class RouterNetworkInputPort implements RouterNetworkUseCase {
     private final RouterNetworkOutputPort

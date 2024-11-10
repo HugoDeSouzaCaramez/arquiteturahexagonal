@@ -20,6 +20,12 @@ public class Router {
         this.routerId = routerId;
     }
 
+    public Router(RouterType routerType, RouterId routerId, Switch networkSwitch) {
+        this.routerType = routerType;
+        this.routerId = routerId;
+        this.networkSwitch = networkSwitch;
+    }
+
     public static Predicate<Router> filterRouterByType(RouterType routerType){
         return routerType.equals(RouterType.CORE)
                 ? Router.isCore() :
@@ -35,7 +41,6 @@ public class Router {
     }
 
     public void addNetworkToSwitch(Network network){
-
         this.networkSwitch = networkSwitch.addNetwork(network, this);
     }
 
@@ -51,11 +56,16 @@ public class Router {
         return routerType;
     }
 
+    public RouterId getRouterId() {
+        return routerId;
+    }
+
     @Override
     public String toString() {
         return "Router{" +
                 "routerType=" + routerType +
                 ", routerId=" + routerId +
+                ", networkSwitch=" + networkSwitch +
                 '}';
     }
 }
