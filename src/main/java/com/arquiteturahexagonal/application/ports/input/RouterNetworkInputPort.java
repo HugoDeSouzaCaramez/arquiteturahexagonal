@@ -30,6 +30,33 @@ import com.arquiteturahexagonal.domain.vo.RouterId;
  * é manipular dados orquestrando chamadas internas com serviços de Domínio e chamadas externas com portas de saída.
  * A porta de entrada define a ordem de execução da operação e fornece ao hexágono de domínio dados em um
  * formato que ele entende.
+ *
+ *
+ * No início deste capítulo, aprendemos como os casos de uso estabelecem as ações
+ * necessárias para realizar algo útil na aplicação. Entre essas ações, pode haver situações
+ * que exijam que interajamos com sistemas externos.
+ *
+ * Portanto, o motivo para criar e utilizar portas de saída será derivado das atividades executadas pelos casos de uso.
+ * No código, a referência para uma porta de saída não aparecerá na declaração de interface do caso de
+ * uso. O uso de portas de saída é explicitado quando implementamos o caso de uso com uma porta de
+ * entrada. Foi o que fizemos quando implementamos RouterNetworkUseCase e declaramos uma RouterNetworkOutputPort
+ * atributo no início de RouterNetworkInputPort
+ *
+ *
+ * Você pode estar se perguntando quando e como a instância para uma porta de saída é criada. O exemplo
+ * anterior mostra uma abordagem, onde o construtor de porta de entrada recebe uma referência para um objeto de porta de saída.
+ * Este objeto será uma implementação fornecida por um adaptador de saída
+ *
+ * Entre as operações definidas por um caso de uso e implementadas por uma porta de entrada, algumas operações
+ * são responsáveis por obter dados de ou persistir dados para fontes externas. É aí que as portas de saída entram:
+ * para fornecer os dados necessários para cumprir a meta do caso de uso.
+ *
+ *
+ * Da mesma forma que uma meta de caso de uso é usada para representar a intenção de um pedaço de software,
+ * sem dizer como essa intenção será realizada, as portas de saída fazem a mesma coisa ao representar que tipo de
+ * dados o aplicativo precisa, sem precisar saber como esses dados serão obtidos. As portas de saída, junto com as
+ * portas de entrada e os casos de uso, são os componentes de arquitetura hexagonal que dão suporte ao esforço
+ * de automação que caracteriza o hexágono do aplicativo. E
  * */
 public class RouterNetworkInputPort implements RouterNetworkUseCase {
     private final RouterNetworkOutputPort
