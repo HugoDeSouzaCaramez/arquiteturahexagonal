@@ -17,6 +17,19 @@ import com.arquiteturahexagonal.domain.vo.RouterId;
  * Router passando um ID RouterId para o método fetchRouterById da porta de saída . É quando a porta de entrada
  * precisará coordenar uma chamada externa que será realizada por um adaptador de saída que implementa a porta de
  * saída.
+ *
+ *
+ * Se tudo correr bem, a porta de entrada receberá o objeto Router desejado e poderá criar um objeto de rede
+ * e adicioná-lo ao roteador informado. Neste ponto, a porta de entrada está interagindo com um serviço de
+ * Domínio chamado createNewNetwork. Este serviço funciona sob as restrições impostas pelas regras de
+ * negócios do hexágono de Domínio. Finalmente, a porta de entrada coordena a persistência de toda a
+ * operação por meio do método persistRouter da porta de saída.
+ *
+ *
+ * Esta porta de entrada não contém nada específico para o domínio do problema. Sua principal preocupação
+ * é manipular dados orquestrando chamadas internas com serviços de Domínio e chamadas externas com portas de saída.
+ * A porta de entrada define a ordem de execução da operação e fornece ao hexágono de domínio dados em um
+ * formato que ele entende.
  * */
 public class RouterNetworkInputPort implements RouterNetworkUseCase {
     private final RouterNetworkOutputPort
