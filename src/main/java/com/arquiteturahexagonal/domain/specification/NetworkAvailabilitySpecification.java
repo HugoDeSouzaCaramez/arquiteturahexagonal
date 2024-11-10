@@ -2,12 +2,13 @@ package com.arquiteturahexagonal.domain.specification;
 
 import com.arquiteturahexagonal.domain.entity.Router;
 import com.arquiteturahexagonal.domain.vo.IP;
+import com.arquiteturahexagonal.domain.vo.Network;
 
 public final class NetworkAvailabilitySpecification extends AbstractSpecification<Router> {
 
-    private final IP address;
-    private final String name;
-    private final int cidr;
+    private IP address;
+    private String name;
+    private int cidr;
 
     public NetworkAvailabilitySpecification(IP address, String name, int cidr) {
         this.address = address;
@@ -20,10 +21,13 @@ public final class NetworkAvailabilitySpecification extends AbstractSpecificatio
         return router!=null && isNetworkAvailable(router);
     }
 
-    private boolean isNetworkAvailable(Router router) {
-        return router.retrieveNetworks().stream().noneMatch(
-                network -> network.address().equals(address) &&
-                        network.name().equals(name) &&
-                        network.cidr() == cidr);
+    private boolean isNetworkAvailable(Router router){
+        var availability = true;
+        for (Network network : router.retrieveNetworks()) {
+            if(network.getAddress().equals(address) && network.getName().equals(name) && network.getCidr() == cidr)
+                availability = false;
+            break;
+        }
+        return availability;
     }
 }
