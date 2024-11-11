@@ -8,3 +8,23 @@ dados de entrada, mas ambos têm uma coisa em comum. Uma vez que eles capturam d
 entrada na variável params , ambos chamam o método addNetworkToRouter herdado da classe base do adaptador
 Deste ponto em diante, os dados seguem o mesmo fluxo descrito no cenário do adaptador REST, onde o
 adaptador de entrada chama a porta de entrada por meio de uma referência de interface de caso de uso.
+
+
+compilar: mvn clean package
+Para chamar o adaptador REST, execute o arquivo .jar com o parâmetro rest: $ java -jar target/chapter04-1.0-SNAPSHOT-jar-with-dependencies.
+                                                                           jar rest
+                                                                           REST endpoint listening on port 8080…
+Assim que o aplicativo estiver em execução, você pode iniciar uma solicitação HTTP GET para criar e adicionar uma rede: curl -vv "http://localhost:8080/network/add?routerId=ca23800e9b5a-11eb-a8b3-0242ac130003&address=40.0.0.0&name=Finance&c
+Para chamar o adaptador CLI, execute o arquivo .jar sem parâmetros: $ java -jar target/chapter04-1.0-SNAPSHOT-jar-with-dependencies.
+                                                                    jar cli
+                                                                    Please inform the Router ID:
+                                                                    ca23800e-9b5a-11eb-a8b3-0242ac130003
+                                                                    Please inform the IP address:
+                                                                    40.0.0.0
+                                                                    Please inform the Network Name:
+                                                                    Finance
+                                                                    Please inform the CIDR:
+                                                                    8 idr=8"
+
+O aplicativo pedirá que você especifique o ID do roteador e outros detalhes adicionais da rede para chamar o adaptador
+CLI. Aqui, fornecemos os mesmos dados usados para chamar o adaptador REST.
