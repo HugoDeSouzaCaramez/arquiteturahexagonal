@@ -38,3 +38,24 @@ falar com várias fontes de dados. Fazemos isso com adaptadores de saída.
 
 
 Adaptadores de saída são implementações das portas de saída que criamos no hexágono de aplicação
+
+
+Embora os switches e as redes tenham chaves primárias, tratamos os switches como entidades e redes
+como objetos de valor que são parte da entidade Router no modelo de domínio. Estamos
+impondo nosso modelo no arranjo tecnológico e não o contrário.
+
+Não usamos essas chaves primárias das tabelas switches e networks como referências no
+modelo de domínio. Em vez disso, usamos o valor router_id para correlacionar a entidade
+Router com seus objetos de valor Switch e Network e suas respectivas tabelas de banco de
+dados. Essa correlação permite a formação de um agregado onde Router é a raiz agregada,
+e Switch e Network são os objetos usados para compor o agregado.
+
+
+Para configurar corretamente o gerenciador de entidades, criamos o
+arquivo resources/ META-INF/persistence.xml com uma propriedade para configurar o banco de dados H2
+
+
+
+Lembre-se, nosso modelo de domínio vem primeiro, então não queremos acoplar o sistema com tecnologia de
+banco de dados. É por isso que precisamos criar uma classe RouterData ORM para mapear diretamente para os
+tipos de banco de dados

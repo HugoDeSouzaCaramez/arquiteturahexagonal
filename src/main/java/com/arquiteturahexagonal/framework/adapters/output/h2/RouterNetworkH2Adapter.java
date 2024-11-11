@@ -8,6 +8,21 @@ import com.arquiteturahexagonal.domain.vo.RouterId;
  * Ele usa um banco de dados H2 na memória para configurar
  * todas as tabelas e relacionamentos necessários. Esta implementação do adaptador nos mostra como adaptar os
  * dados do modelo de domínio a um banco de dados relacional.
+ *
+ *
+ * O primeiro método que substituímos é fetchRouterById, onde recebemos routerId para buscar um roteador do banco de dados H2
+ * usando nossa referência de gerenciador de entidade. Não podemos usar a classe de entidade de domínio Router para mapear
+ * diretamente para o banco de dados. Além disso, não podemos usar a entidade de banco de dados como uma entidade de domínio.
+ * É por isso que usamos o método toDomain em fetchRouterById para mapear dados do banco de dados H2 para o domínio.
+ *
+ *
+ * Fazemos o mesmo procedimento de mapeamento, usando o método toH2 em persistRouter para convertêlo de uma entidade de modelo de domínio em uma entidade de banco de dados H2. O método setUpH2Database inicia
+ * o banco de dados quando o aplicativo inicia. Para criar apenas uma instância do adaptador H2,
+ * definimos um singleton usando o método getInstance
+ *
+ * O campo de instância é usado para fornecer um objeto singleton do adaptador de saída H2. Observe
+ * que o construtor chama o método setUpH2Database para criar uma conexão de banco de dados
+ * usando EntityManagerFactory.
  * */
 public class RouterNetworkH2Adapter implements RouterNetworkOutputPort {
 
