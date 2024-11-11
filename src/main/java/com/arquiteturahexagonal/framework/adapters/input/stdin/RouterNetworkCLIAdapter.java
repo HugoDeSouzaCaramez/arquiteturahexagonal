@@ -11,17 +11,23 @@ import com.arquiteturahexagonal.framework.adapters.output.file.RouterViewFileAda
 import java.util.List;
 
 public class RouterNetworkCLIAdapter extends RouterNetworkAdapter {
-    private RouterViewUseCase routerViewUseCase;
-    public RouterNetworkCLIAdapter(
-            RouterNetworkUseCase routerNetworkUseCase){
+
+    public RouterNetworkCLIAdapter(RouterNetworkUseCase routerNetworkUseCase) {
         this.routerNetworkUseCase = routerNetworkUseCase;
     }
-    public List<Router> obtainRelatedRouters(String type) {
-        return routerViewUseCase.getRouters(
-                Router.filterRouterByType(RouterType.valueOf(type)));
-    }
-    private void setAdapters(){
-        this.routerViewUseCase = new RouterViewInputPort(RouterViewFileAdapter.getInstance());
+
+    @Override
+    public Router processRequest(Object requestParams) {
+        var params = stdinParams(requestParams);
+        router = this.addNetworkToRouter(params);
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            var routerJson = mapper.writeValueAsString(RouterJsonFileMapper.toJson(router));
+            System.out.println(routerJson);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return router;
     }
 }
 
