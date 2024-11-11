@@ -4,6 +4,11 @@ import com.arquiteturahexagonal.application.ports.output.RouterNetworkOutputPort
 import com.arquiteturahexagonal.domain.entity.Router;
 import com.arquiteturahexagonal.domain.vo.RouterId;
 
+/**
+ * Ele usa um banco de dados H2 na memória para configurar
+ * todas as tabelas e relacionamentos necessários. Esta implementação do adaptador nos mostra como adaptar os
+ * dados do modelo de domínio a um banco de dados relacional.
+ * */
 public class RouterNetworkH2Adapter implements RouterNetworkOutputPort {
 
     private static RouterNetworkH2Adapter instance;

@@ -8,6 +8,10 @@ import com.arquiteturahexagonal.domain.vo.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/**
+ * RouterNetworkFileAdapter usa uma estrutura de dados com suporte de arquivo JSON
+ * */
 public class RouterNetworkFileAdapter implements RouterNetworkOutputPort {
 
     private static RouterNetworkFileAdapter instance;
