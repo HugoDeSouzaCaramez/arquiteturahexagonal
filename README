@@ -35,3 +35,6 @@ Os adaptadores de entrada são as portas da frente pelas quais acessamos todos o
 hexagonal pode fornecer. Com adaptadores de entrada, podemos facilmente tornar o sistema acessível por meio de
 diferentes tecnologias sem perturbar a lógica de negócios. Da mesma forma, podemos fazer o aplicativo hexagonal
 falar com várias fontes de dados. Fazemos isso com adaptadores de saída.
+
+
+Adaptadores de saída são implementações das portas de saída que criamos no hexágono de aplicação
