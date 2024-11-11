@@ -28,3 +28,10 @@ Para chamar o adaptador CLI, execute o arquivo .jar sem parâmetros: $ java -jar
 
 O aplicativo pedirá que você especifique o ID do roteador e outros detalhes adicionais da rede para chamar o adaptador
 CLI. Aqui, fornecemos os mesmos dados usados para chamar o adaptador REST.
+
+
+
+Os adaptadores de entrada são as portas da frente pelas quais acessamos todos os recursos que um aplicativo
+hexagonal pode fornecer. Com adaptadores de entrada, podemos facilmente tornar o sistema acessível por meio de
+diferentes tecnologias sem perturbar a lógica de negócios. Da mesma forma, podemos fazer o aplicativo hexagonal
+falar com várias fontes de dados. Fazemos isso com adaptadores de saída.
