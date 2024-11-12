@@ -7,6 +7,7 @@ import com.arquiteturahexagonal.framework.adapters.input.RouterNetworkAdapter;
 import com.arquiteturahexagonal.framework.adapters.input.rest.RouterNetworkRestAdapter;
 import com.arquiteturahexagonal.framework.adapters.input.stdin.RouterNetworkCLIAdapter;
 import com.arquiteturahexagonal.framework.adapters.output.file.RouterNetworkFileAdapter;
+import com.arquiteturahexagonal.framework.adapters.output.h2.RouterNetworkH2Adapter;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;

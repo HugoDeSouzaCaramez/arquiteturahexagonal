@@ -27,13 +27,20 @@ import java.util.UUID;
 @MappedSuperclass
 @Converter(name="uuidConverter", converterClass = UUIDTypeConverter.class)
 public class RouterData implements Serializable {
-    @Column(name="router_id", columnDefinition = "uuid", updatable = false )
+
+    @Id
+    @Column(name="router_id",
+            columnDefinition = "uuid",
+            updatable = false )
     @Convert("uuidConverter")
     private UUID routerId;
+
     @Embedded
     @Enumerated(EnumType.STRING)
     @Column(name="router_type")
     private RouterTypeData routerType;
+
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(table = "switches",
             name = "router_id",

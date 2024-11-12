@@ -1,17 +1,24 @@
 package com.arquiteturahexagonal.framework.adapters.input.rest;
 
+import com.arquiteturahexagonal.framework.adapters.output.file.mappers.RouterJsonFileMapper;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sun.net.httpserver.HttpServer;
 import com.arquiteturahexagonal.application.usecase.RouterNetworkUseCase;
 import com.arquiteturahexagonal.domain.entity.Router;
 import com.arquiteturahexagonal.framework.adapters.input.RouterNetworkAdapter;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.OutputStream;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.util.*;
+import java.util.regex.Pattern;
+
+import static java.util.stream.Collectors.*;
+import java.net.URLDecoder;
 
 public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
 
-    public RouterNetworkRestAdapter(RouterNetworkUseCase routerNetworkUseCase) {
+    public RouterNetworkRestAdapter(RouterNetworkUseCase routerNetworkUseCase){
         this.routerNetworkUseCase = routerNetworkUseCase;
     }
 
@@ -46,5 +53,27 @@ public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
         }
         return router;
     }
-}
 
+    private void httpParams(String query, Map<String, String> params) {
+        var noNameText = "Anonymous";
+        var requestParams = Pattern.compile("&").splitAsStream(query)
+                .map(s -> Arrays.copyOf(s.split("="), 2))
+                .collect(groupingBy(s -> decode(s[0]), mapping(s -> decode(s[1]), toList())));
+        var routerId = requestParams.getOrDefault("routerId", List.of(noNameText)).stream().findFirst().orElse(noNameText);
+        params.put("routerId",routerId);
+        var address = requestParams.getOrDefault("address", List.of(noNameText)).stream().findFirst().orElse(noNameText);
+        params.put("address",address);
+        var name = requestParams.getOrDefault("name", List.of(noNameText)).stream().findFirst().orElse(noNameText);
+        params.put("name",name);
+        var cidr = requestParams.getOrDefault("cidr", List.of(noNameText)).stream().findFirst().orElse(noNameText);
+        params.put("cidr",cidr);
+    }
+
+    private static String decode(final String encoded) {
+        try {
+            return encoded == null ? null : URLDecoder.decode(encoded, "UTF-8");
+        } catch (final UnsupportedEncodingException e) {
+            throw new RuntimeException("UTF-8 is a required encoding", e);
+        }
+    }
+}

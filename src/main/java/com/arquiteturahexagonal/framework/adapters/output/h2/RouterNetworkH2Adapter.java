@@ -3,6 +3,12 @@ package com.arquiteturahexagonal.framework.adapters.output.h2;
 import com.arquiteturahexagonal.application.ports.output.RouterNetworkOutputPort;
 import com.arquiteturahexagonal.domain.entity.Router;
 import com.arquiteturahexagonal.domain.vo.RouterId;
+import com.arquiteturahexagonal.framework.adapters.output.h2.data.RouterData;
+import com.arquiteturahexagonal.framework.adapters.output.h2.mappers.RouterH2Mapper;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.PersistenceContext;
 
 /**
  * Ele usa um banco de dados H2 na memória para configurar
