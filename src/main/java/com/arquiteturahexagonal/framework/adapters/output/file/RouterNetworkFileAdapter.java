@@ -6,6 +6,10 @@ import com.arquiteturahexagonal.domain.entity.Switch;
 import com.arquiteturahexagonal.domain.vo.*;
 
 import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Paths;
 import java.util.List;
 
 
@@ -22,21 +26,24 @@ public class RouterNetworkFileAdapter implements RouterNetworkOutputPort {
     @Override
     public Router fetchRouterById(RouterId routerId) {
         var router = new Router();
-        for(RouterJson routerJson: routers){
-            if(routerJson.getRouterId().equals(routerId.getUUID())){
-                router = RouterJsonFileMapper.toDomain(routerJson);
+        for(RouterJson: routers){
+            if(routerJson.getRouterId().
+                    equals(routerId.getUUID())){
+                router = RouterJsonFileMapper.
+                        toDomain(routerJson);
                 break;
             }
         }
         return router;
     }
-
     @Override
     public boolean persistRouter(Router router) {
-        var routerJson = RouterJsonFileMapper.toJson(router);
+        var routerJson = RouterJsonFileMapper.
+                toJson(router);
         try {
-            String localDir = Paths.get("").toAbsolutePath().toString();
-            File file = new File(localDir + "/inventory.json");
+            var localDir = Paths.get("").
+                    toAbsolutePath().toString();
+            var file = new File(localDir + "/inventory.json");
             file.delete();
             objectMapper.writeValue(file, routerJson);
         } catch (IOException e) {
@@ -47,19 +54,16 @@ public class RouterNetworkFileAdapter implements RouterNetworkOutputPort {
 
     private void readJsonFile(){
         try {
-            this.routers = objectMapper.
-                    readValue(
-                            resource,
-                            new TypeReference<List<RouterJson>>(){});
+            this.routers = objectMapper.readValue(
+                    resource,
+                    new TypeReference<List<RouterJson>>(){});
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     private RouterNetworkFileAdapter() {
         this.objectMapper = new ObjectMapper();
-        this.resource = getClass().
-                getClassLoader().
+        this.resource = getClass().getClassLoader().
                 getResourceAsStream("inventory.json");
         readJsonFile();
     }
