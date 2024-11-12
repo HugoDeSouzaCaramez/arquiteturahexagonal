@@ -59,3 +59,21 @@ arquivo resources/ META-INF/persistence.xml com uma propriedade para configurar 
 Lembre-se, nosso modelo de domínio vem primeiro, então não queremos acoplar o sistema com tecnologia de
 banco de dados. É por isso que precisamos criar uma classe RouterData ORM para mapear diretamente para os
 tipos de banco de dados
+
+Ao criar esses dois adaptadores de saída, habilitamos o aplicativo hexagonal a falar com
+diferentes fontes de dados. A melhor parte foi que não precisamos alterar nada nos hexágonos Domain.
+O único requisito para criar um adaptador de saída é implementar uma interface de porta de saída do
+hexágono Application. Esses exemplos de adaptador de saída mostraram como uma abordagem hexagonal
+protege a lógica de negócios de preocupações tecnológicas. Claro, há uma compensação quando decidimos
+seguir esse caminho. No entanto, se pretendemos tornar os sistemas tolerantes a mudanças centralizados
+no modelo de domínio, a arquitetura hexagonal fornece as técnicas necessárias para isso.
+
+Aprendemos neste capítulo que os adaptadores são usados para definir as tecnologias que são suportadas por
+um aplicativo hexagonal. Criamos dois adaptadores de entrada para permitir operações de condução, ou seja,
+um adaptador REST para receber dados de conexões HTTP e um adaptador CLI para receber dados de STDIN.
+Ambos os adaptadores de entrada foram anexados à mesma porta de entrada, permitindo que o sistema
+hexagonal usasse a mesma lógica para processar solicitações vindas em formatos distintos.
+Então, criamos um adaptador de saída de banco de dados H2 e um adaptador de saída de arquivo JSON para
+permitir que o aplicativo hexagonal se comunique com diferentes fontes de dados. Esses dois adaptadores
+de saída foram anexados à mesma porta de saída, permitindo que o sistema hexagonal persistisse e obtivesse
+dados de fontes externas para que a tecnologia da fonte de dados não influenciasse a lógica de negócios
