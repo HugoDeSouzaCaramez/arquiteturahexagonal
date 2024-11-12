@@ -3,7 +3,7 @@ package com.arquiteturahexagonal.framework.adapters.output.file.mappers;
 import com.arquiteturahexagonal.domain.entity.Router;
 import com.arquiteturahexagonal.domain.entity.Switch;
 import com.arquiteturahexagonal.domain.vo.*;
-import com.arquiteturahexagonal.framework.adapters.output.file.json.RouterJson;
+import com.arquiteturahexagonal.framework.adapters.output.file.json.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
