@@ -19,6 +19,10 @@ public abstract class RouterNetworkAdapter {
                 Integer.valueOf(params.get("cidr")));
         return routerNetworkUseCase.addNetworkToRouter(routerId, network);
     }
-    public abstract Router processRequest(
-            Object requestParams);
+    public abstract Router processRequest(Object requestParams);
+
+    public Router getRouter(Map<String, String> params) {
+        var routerId = RouterId.withId(params.get("routerId"));
+        return routerNetworkUseCase.getRouter(routerId);
+    }
 }
