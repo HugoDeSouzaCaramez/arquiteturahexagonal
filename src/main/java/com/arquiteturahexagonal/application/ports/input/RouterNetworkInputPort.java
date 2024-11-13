@@ -71,10 +71,13 @@ public class RouterNetworkInputPort implements RouterNetworkUseCase {
         var router = fetchRouter(routerId);
         return createNetwork(router, network);
     }
-    private Router fetchRouter(RouterId routerId) {
-        return
-                routerNetworkOutputPort.fetchRouterById(routerId);
+    public Router getRouter(RouterId routerId) {
+        return fetchRouter(routerId);
     }
+    private Router fetchRouter(RouterId routerId) {
+        return routerNetworkOutputPort.fetchRouterById(routerId);
+    }
+
     private Router createNetwork(Router router, Network network) {
         var newRouter = NetworkOperation.createNewNetwork(router, network);
         return persistNetwork(router) ? newRouter : router;
