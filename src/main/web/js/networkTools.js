@@ -1,3 +1,12 @@
+/**
+Usamos o objeto XMLHttpRequest para processar requisições GET no endpoint /network/add exposto
+pelo adaptador REST no aplicativo hexagonal. É um código JavaScript curto que captura os valores
+inseridos no formulário HTML, os processa e, em seguida, mostra uma mensagem de sucesso se
+tudo der certo ou uma mensagem de erro se não
+
+*/
+
+
 function addNetworkToRouter() {
     const routerId = document.getElementById("routerId").value;
     const address = document.getElementById("address").value;
