@@ -28,6 +28,12 @@ function addNetworkToRouter() {
 
 }
 
+/**
+Para criar uma visualização gráfica baseada em JSON do roteador e suas redes, usaremos uma
+biblioteca JavaScript chamada D3 que consome os dados JSON e produz a visualização gráfica. O
+código JavaScript processa o formulário e, em seguida, usa a resposta JSON com as bibliotecas D3
+*/
+
 function getRouter() {
     const routerId = document.getElementById("routerId").value;
     var xhttp = new XMLHttpRequest();
