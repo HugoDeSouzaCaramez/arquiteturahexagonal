@@ -95,3 +95,6 @@ seus respectivos testes, e essas mesmas coleções são acionadas e validadas po
 ferramentas de CI (como Jenkins) que podem usar Newman para executar os testes.
 
 
+As operações de condução vêm das solicitações do ator primário que conduzem o comportamento de
+um sistema hexagonal, enquanto as operações conduzidas são as solicitações iniciadas pelo próprio aplicativo
+hexagonal em direção a atores secundários (como bancos de dados ou outros sistemas).
