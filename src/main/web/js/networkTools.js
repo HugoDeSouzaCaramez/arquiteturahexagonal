@@ -32,6 +32,10 @@ function addNetworkToRouter() {
 Para criar uma visualização gráfica baseada em JSON do roteador e suas redes, usaremos uma
 biblioteca JavaScript chamada D3 que consome os dados JSON e produz a visualização gráfica. O
 código JavaScript processa o formulário e, em seguida, usa a resposta JSON com as bibliotecas D3
+Aqui, estamos passando o endpoint /network/get definido anteriormente no aplicativo hexagonal.
+A função getRouter processa as solicitações GET e usa a resposta JSON como
+parâmetro para a função createTree que construirá a visualização gráfica da rede.
+
 */
 
 function getRouter() {
