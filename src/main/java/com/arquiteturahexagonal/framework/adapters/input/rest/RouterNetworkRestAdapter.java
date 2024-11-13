@@ -22,33 +22,43 @@ public class RouterNetworkRestAdapter extends RouterNetworkAdapter {
         this.routerNetworkUseCase = routerNetworkUseCase;
     }
 
-    /**
-     * When implementing a REST adapter, the processRequest method receives an Object type parameter
-     * that is always cast to an HttpServer type.
-     */
+
     @Override
     public Router processRequest(Object requestParams){
         Map<String, String> params = new HashMap<>();
         if(requestParams instanceof HttpServer) {
             var httpserver = (HttpServer) requestParams;
-            httpserver.createContext("/network/add", (exchange -> {
+            httpserver.createContext("/network", (exchange -> {
                 if ("GET".equals(exchange.getRequestMethod())) {
                     var query = exchange.getRequestURI().getRawQuery();
                     httpParams(query, params);
-                    router = this.addNetworkToRouter(params);
+                    exchange.getResponseHeaders().set("Content-Type", "application/json");
+                    exchange.getResponseHeaders().set("Access-Control-Allow-Origin", "*");
+                    if(exchange.getRequestURI().getPath().equals("/network/add")) {
+                        try {
+                            router = this.addNetworkToRouter(params);
+                        } catch (Exception e){
+                            exchange.sendResponseHeaders(400, e.getMessage().getBytes().length);
+                            OutputStream output = exchange.getResponseBody();
+                            output.write(e.getMessage().getBytes());
+                            output.flush();
+                        }
+                    }
+                    if(exchange.getRequestURI().getPath().contains("/network/get")) {
+                        router = this.getRouter(params);
+                    }
                     ObjectMapper mapper = new ObjectMapper();
                     var routerJson = mapper.writeValueAsString(RouterJsonFileMapper.toJson(router));
-                    exchange.getResponseHeaders().set("Content-Type", "application/json");
                     exchange.sendResponseHeaders(200, routerJson.getBytes().length);
                     OutputStream output = exchange.getResponseBody();
                     output.write(routerJson.getBytes());
                     output.flush();
                 } else {
-                    exchange.sendResponseHeaders(405, -1);
+                    exchange.sendResponseHeaders(405, -1);// 405 Method Not Allowed
                 }
                 exchange.close();
             }));
-            httpserver.setExecutor(null);
+            httpserver.setExecutor(null); // creates a default executor
             httpserver.start();
         }
         return router;
