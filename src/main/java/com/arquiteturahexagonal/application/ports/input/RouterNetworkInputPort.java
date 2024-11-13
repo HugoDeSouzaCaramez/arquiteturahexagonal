@@ -57,6 +57,11 @@ import com.arquiteturahexagonal.domain.vo.RouterId;
  * dados o aplicativo precisa, sem precisar saber como esses dados serão obtidos. As portas de saída, junto com as
  * portas de entrada e os casos de uso, são os componentes de arquitetura hexagonal que dão suporte ao esforço
  * de automação que caracteriza o hexágono do aplicativo.
+ *
+ *
+ * Observe que fetchRouter já existia na implementação da porta de entrada, mas não tínhamos uma operação exposta
+ * que nos permitisse recuperar o roteador. O método fetchRouter é então usado não apenas pelo método
+ * addNetworkToRouter , mas agora também por getRouter.
  * */
 public class RouterNetworkInputPort implements RouterNetworkUseCase {
     private final RouterNetworkOutputPort
