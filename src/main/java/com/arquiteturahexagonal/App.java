@@ -25,7 +25,7 @@ public class App {
     private RouterNetworkOutputPort outputPort;
 
     public static void main(String... args)  {
-        var adapter = "cli";
+        var adapter = "rest";
         if(args.length>0) {
             adapter = args[0];
         }

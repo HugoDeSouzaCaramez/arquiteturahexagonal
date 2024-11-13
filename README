@@ -81,3 +81,17 @@ dados de fontes externas para que a tecnologia da fonte de dados não influencia
 
 O aplicativo frontend permitirá que os usuários adicionem redes a um roteador existente e visualizem uma
 representação gráfica do roteador e suas redes.
+
+
+
+Agentes de teste como meios de conduzir operações (drivin)
+
+Agentes de teste: Executando coleção de testes com POSTMAN  Newman:
+newman run nomedoarquivo.json
+
+Esse tipo de execução de teste usando Newman é ideal para integrar o aplicativo hexagonal em
+pipelines de Integração Contínua (CI). Os desenvolvedores usam o Postman para criar coleções e
+seus respectivos testes, e essas mesmas coleções são acionadas e validadas por meio de
+ferramentas de CI (como Jenkins) que podem usar Newman para executar os testes.
+
+
