@@ -77,3 +77,7 @@ Então, criamos um adaptador de saída de banco de dados H2 e um adaptador de sa
 permitir que o aplicativo hexagonal se comunique com diferentes fontes de dados. Esses dois adaptadores
 de saída foram anexados à mesma porta de saída, permitindo que o sistema hexagonal persistisse e obtivesse
 dados de fontes externas para que a tecnologia da fonte de dados não influenciasse a lógica de negócios
+
+
+O aplicativo frontend permitirá que os usuários adicionem redes a um roteador existente e visualizem uma
+representação gráfica do roteador e suas redes.
