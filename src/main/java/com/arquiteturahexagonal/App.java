@@ -1,13 +1,16 @@
 package com.arquiteturahexagonal;
 
 import com.arquiteturahexagonal.application.ports.input.RouterNetworkInputPort;
+import com.arquiteturahexagonal.application.ports.output.NotifyEventOutputPort;
 import com.arquiteturahexagonal.application.ports.output.RouterNetworkOutputPort;
 import com.arquiteturahexagonal.application.usecase.RouterNetworkUseCase;
 import com.arquiteturahexagonal.framework.adapters.input.RouterNetworkAdapter;
 import com.arquiteturahexagonal.framework.adapters.input.rest.RouterNetworkRestAdapter;
 import com.arquiteturahexagonal.framework.adapters.input.stdin.RouterNetworkCLIAdapter;
+import com.arquiteturahexagonal.framework.adapters.input.websocket.NotifyEventWebSocketAdapter;
 import com.arquiteturahexagonal.framework.adapters.output.file.RouterNetworkFileAdapter;
 import com.arquiteturahexagonal.framework.adapters.output.h2.RouterNetworkH2Adapter;
+import com.arquiteturahexagonal.framework.adapters.output.kafka.NotifyEventKafkaAdapter;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
@@ -22,27 +25,30 @@ public class App {
 
     private RouterNetworkAdapter inputAdapter;
     private RouterNetworkUseCase usecase;
-    private RouterNetworkOutputPort outputPort;
+    private RouterNetworkOutputPort routerOutputPort;
+    private NotifyEventOutputPort notifyOutputPort;
 
-    public static void main(String... args)  {
-        var adapter = "rest";
+    public static void main(String... args) throws IOException, InterruptedException {
+        var adapter = "cli";
         if(args.length>0) {
             adapter = args[0];
         }
         new App().setAdapter(adapter);
     }
 
-    void setAdapter(String adapter) {
+    void setAdapter(String adapter) throws IOException, InterruptedException {
         switch (adapter) {
             case "rest" -> {
-                outputPort = RouterNetworkH2Adapter.getInstance();
-                usecase = new RouterNetworkInputPort(outputPort);
+                routerOutputPort = RouterNetworkH2Adapter.getInstance();
+                notifyOutputPort = NotifyEventKafkaAdapter.getInstance();
+                usecase = new RouterNetworkInputPort(routerOutputPort, notifyOutputPort);
                 inputAdapter = new RouterNetworkRestAdapter(usecase);
                 rest();
+                NotifyEventWebSocketAdapter.startServer();
             }
             default -> {
-                outputPort = RouterNetworkFileAdapter.getInstance();
-                usecase = new RouterNetworkInputPort(outputPort);
+                routerOutputPort = RouterNetworkFileAdapter.getInstance();
+                usecase = new RouterNetworkInputPort(routerOutputPort);
                 inputAdapter = new RouterNetworkCLIAdapter(usecase);
                 cli();
             }

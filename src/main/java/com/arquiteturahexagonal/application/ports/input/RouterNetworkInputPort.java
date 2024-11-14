@@ -1,5 +1,6 @@
 package com.arquiteturahexagonal.application.ports.input;
 
+import com.arquiteturahexagonal.application.ports.output.NotifyEventOutputPort;
 import com.arquiteturahexagonal.application.ports.output.RouterNetworkOutputPort;
 import com.arquiteturahexagonal.application.usecase.RouterNetworkUseCase;
 import com.arquiteturahexagonal.domain.entity.Router;

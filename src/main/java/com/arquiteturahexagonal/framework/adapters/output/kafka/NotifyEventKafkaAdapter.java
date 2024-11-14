@@ -1,6 +1,22 @@
 package com.arquiteturahexagonal.framework.adapters.output.kafka;
 
 import com.arquiteturahexagonal.application.ports.output.NotifyEventOutputPort;
+import com.arquiteturahexagonal.framework.adapters.input.websocket.WebSocketClientAdapter;
+import org.apache.kafka.clients.consumer.Consumer;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
+import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.serialization.LongDeserializer;
+import org.apache.kafka.common.serialization.LongSerializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.StringSerializer;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Collections;
+import java.util.Properties;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
 
@@ -24,9 +40,6 @@ public class NotifyEventKafkaAdapter implements NotifyEventOutputPort {
 
     private static boolean sendToWebsocket;
 
-    /**
-     * Vamos agora criar o método para enviar mensagens para o nosso tópico Kafka
-     * */
     private static Producer<Long, String> getProducer(){
         Properties properties = new Properties();
         properties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_BROKERS);

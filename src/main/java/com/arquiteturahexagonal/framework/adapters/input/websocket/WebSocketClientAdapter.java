@@ -1,5 +1,8 @@
 package com.arquiteturahexagonal.framework.adapters.input.websocket;
 
+import org.java_websocket.handshake.ServerHandshake;
+import java.net.URI;
+
 public class WebSocketClientAdapter extends org.java_websocket.client.WebSocketClient {
 
     public WebSocketClientAdapter(URI serverUri) {

@@ -1,5 +1,15 @@
 package com.arquiteturahexagonal.framework.adapters.input.websocket;
 
+import org.java_websocket.WebSocket;
+import org.java_websocket.handshake.ClientHandshake;
+import org.java_websocket.server.WebSocketServer;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+
 public class NotifyEventWebSocketAdapter extends WebSocketServer {
 
     public NotifyEventWebSocketAdapter(InetSocketAddress address) {
