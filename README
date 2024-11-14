@@ -1,3 +1,9 @@
+APLICATIVO:
+Sistema que gerencia o inventário de topologia e rede de uma empresa
+de telecomunicações
+
+
+
 mvn archetype:generate -DgroupId=com.arquiteturahexagonal -DartifactId=arquiteturahexagonal -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
 
 
