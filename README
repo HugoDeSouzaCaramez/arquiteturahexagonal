@@ -98,3 +98,87 @@ ferramentas de CI (como Jenkins) que podem usar Newman para executar os testes.
 As operações de condução vêm das solicitações do ator primário que conduzem o comportamento de
 um sistema hexagonal, enquanto as operações conduzidas são as solicitações iniciadas pelo próprio aplicativo
 hexagonal em direção a atores secundários (como bancos de dados ou outros sistemas).
+
+
+A página Events segue a mesma estrutura que usamos nas páginas anteriores. A parte importante
+desta página é o código JavaScript utilizado para conectar usuários ao servidor WebSocket
+exposto por nossa aplicação hexagonal.
+
+O método onmessage cria e anexa um novo elemento HTML div para cada nova mensagem
+recebida da conexão WebSocket. Então, cada evento gerado pelo aplicativo hexagonal
+será enviado para o Kafka e impresso em tempo real no aplicativo frontend.
+
+Para testar esse fluxo, certifique-se de ter sua instância local do Kafka em execução. Então, inicie o aplicativo hexagonal:
+java -jar target/topology-inventory-1.0-SNAPSHOT-jar-withdependencies.jar rest
+docker-compose up -d
+docker exec -it kafka kafka-topics --create --topic topology-inventory-events --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+Para criar uma conexão WebSocket entre seu navegador e o aplicativo, você precisa abrir a
+página Eventos do aplicativo frontend. Para ver os dados fluindo para a página Eventos, tente
+adicionar uma rede ou recuperar um roteador usando o ID ca23800e-9b5a-11eba8b3-0242ac130003.
+As entradas de eventos aparecerão na página Eventos (bug - não aparece na pagina, o evento aparece somente no terminal de execução, e só aparece o evento de adição de rede não o evento de recuperação)
+
+Essa integração usando Kafka e WebSockets nos mostrou como um aplicativo hexagonal lida com operações
+orientadas a mensagens. Não precisamos tocar na lógica de negócios para adicionar essas tecnologias. Tudo
+o que tivemos que fazer foi criar mais portas e adaptadores para aumentar as capacidades do sistema.
+
+
+
+
+Servidores simulados (mock servers)
+
+A abordagem típica para desenvolvimento de software é ter múltiplos ambientes, como desenvolvimento, QA
+e produção. Os primeiros lançamentos de software funcionais começam a ir para ambientes de desenvolvimento
+e, então, progressivamente, seguem para produção. Essa jornada para produção é geralmente conduzida por
+pipelines de CI que validam e garantem constantemente que o software está funcionando bem.
+Entre as validações de CI, testes unitários e de integração podem acontecer durante a execução do pipeline. Integração
+Os testes, em particular, dependem de componentes externos, como outros aplicativos, sistemas, bancos de
+dados e serviços – todos eles fornecidos em ambientes diferentes.
+A execução de testes de integração em ambientes de desenvolvimento apresenta baixo risco, mas
+pode causar problemas se houver, por exemplo, uso simultâneo de recursos. Esse problema de
+simultaneidade pode gerar inconsistência nos resultados dos testes. Para QA, a situação é um pouco mais complicada
+porque devemos garantir  consistência ao lidar com dados de teste explicitamente adaptados a cenários específicos. Se esses dados de teste
+mudarem inadvertidamente, podemos encontrar inconsistências nos resultados dos testes. Precisamos ter
+cuidado porque o custo de falhas de teste em QA é ainda maior do que em ambientes de desenvolvimento.
+Para superar obstáculos de teste, algumas ferramentas simulam endpoints de aplicativos e suas respostas.
+Começando com as operações de condução, aprendemos que elas conduzem o comportamento do aplicativo
+hexagonal chamando seus adaptadores de entrada. Para ilustrar as operações de condução, primeiro criamos
+um aplicativo frontend para desempenhar o papel de um ator primário solicitando dados por meio dos adaptadores
+de entrada fornecidos pela topologia e pelo aplicativo hexagonal de inventário. Então, para explorar as ferramentas
+de teste como operações de condução, criamos uma coleção Postman com testes baseados em endpoints de API expostos pelo aplicativAo lidar com diferentes tipos de operações de acionamento e acionadas, agora podemos compreender melhor o
+funcionamento interno de um sistema hexagonal, seus arredores e como as operações de acionamento e
+acionadas influenciam a aplicação hexagonal.
+No lado das operações conduzidas, vimos como habilitar o aplicativo hexagonal para trabalhar com sistemas
+baseados em mensagens, como o Kafka. Para entender melhor os efeitos dos sistemas baseados em mensagens
+no aplicativo hexagonal, criamos portas e adaptadores que habilitaram o aplicativo a enviar e consumir mensagens
+do Kafka. Além disso, criamos um servidor WebSocket para permitir que o aplicativo frontend recupere os
+eventos gerados pelo sistema hexagonal em tempo real.
+Os fundamentos adquiridos neste capítulo e nos anteriores fornecem todos os blocos de construção para
+começar a desenvolver sistemas robustos e tolerantes a mudanças com os instrumentos de arquitetura hexagonal.
+Essas ferramentas são conhecidas como soluções simuladas e vêm em várias formas e tamanhos. Você pode
+simular manualmente as respostas e endpoints de um serviço que seu aplicativo precisa; no entanto, isso nem
+sempre é trivial e pode exigir um esforço considerável. Além disso, existem ferramentas sofisticadas que fazem
+o trabalho sujo e permitem que você se concentre apenas na lógica. Essa é a função dos servidores de simulação.
+
+Como os servidores de simulação atuam como uma entidade externa que fornece recursos úteis ao aplicativo, nós
+também os consideramos  atores secundários impulsionados por um sistema hexagonal que quer alavancar recursos de servidor simulados em vez de atingir sistemas reais.
+
+
+Começando com as operações de condução, aprendemos que elas conduzem o comportamento do aplicativo
+hexagonal chamando seus adaptadores de entrada. Para ilustrar as operações de condução, primeiro criamos
+um aplicativo frontend para desempenhar o papel de um ator primário solicitando dados por meio dos adaptadores
+de entrada fornecidos pela topologia e pelo aplicativo hexagonal de inventário. Então, para explorar as ferramentas
+de teste como operações de condução, criamos uma coleção Postman com testes baseados em endpoints de API expostos pelo
+hexagono de aplicação.
+
+No lado das operações conduzidas, vimos como habilitar o aplicativo hexagonal para trabalhar com sistemas
+baseados em mensagens, como o Kafka. Para entender melhor os efeitos dos sistemas baseados em mensagens
+no aplicativo hexagonal, criamos portas e adaptadores que habilitaram o aplicativo a enviar e consumir mensagens
+do Kafka. Além disso, criamos um servidor WebSocket para permitir que o aplicativo frontend recupere os
+eventos gerados pelo sistema hexagonal em tempo real.
+
+Ao lidar com diferentes tipos de operações de condução (drivin/entrada) e conduzidas(driven/saída), agora podemos compreender melhor o
+funcionamento interno de um sistema hexagonal, seus arredores e como as operações de condução e
+conduzidas influenciam a aplicação hexagonal.
+
+
